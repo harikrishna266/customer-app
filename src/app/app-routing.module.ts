@@ -9,8 +9,11 @@ const routes: Routes = [
   },
   {
     path: '', component: AuthComponent, children: [
-      path: 'home',
-      loadChildren: './modules/accounting-administration/accounting-administration.module#AccountingAdministrationModule'
+      {
+        path: 'home',
+        loadChildren: './modules/home/home.module#HomeModule'
+      }
+
     ]
   }
 ];
