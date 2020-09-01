@@ -9,18 +9,20 @@ const routes: Routes = [
   },
   {
     path: '', component: AuthComponent, children: [
-      {
-        path: 'home',
-        loadChildren: './modules/home/home.module#HomeModule'
-      }
+      { path: '',     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
+      {path: '**', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)}
 
     ]
   }
 ];
 
 @NgModule({
-
+  declarations: [
+    AuthComponent
+  ],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }
